@@ -16,5 +16,12 @@
         "ms-vscode.cpptools"
       ]
     }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {
+      "password": "vscode",
+      "webPort": "6080",
+      "vncPort": "5901"
+    }
   }
 }
