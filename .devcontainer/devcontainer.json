@@ -17,12 +17,6 @@
       ]
     }
   },
-  "postStartCommand": "echo 'Opening chip-tutorials README...' && sleep 2 && code /root/chip-tutorials/README.md",
-  "features": {
-    "ghcr.io/devcontainers/features/desktop-lite:1": {
-      "password": "bananaslugs!",
-      "webPort": "6080",
-      "vncPort": "5901"
-    }
-  }
+  "postAttachCommand": "bash /usr/local/share/desktop-init.sh",
+  "postStartCommand": "echo 'Opening chip-tutorials README...' && sleep 2 && code /root/chip-tutorials/README.md"
 }

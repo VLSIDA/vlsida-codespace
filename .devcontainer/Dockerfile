@@ -61,7 +61,28 @@ RUN echo '# Auto-source OpenROAD environment' >> /root/.bashrc && \
     echo '    source /root/OpenROAD-flow-scripts/env.sh' >> /root/.bashrc && \
     echo 'fi' >> /root/.bashrc
 
+# Install desktop environment dependencies
+COPY ./scripts/common.sh /usr/local/bin/common.sh
+COPY ./scripts/install-desktop-deps.sh /usr/local/bin/install-desktop-deps.sh
+RUN bash /usr/local/bin/install-desktop-deps.sh
+
+# Install desktop environment
+COPY ./scripts/install-desktop.sh /usr/local/bin/install-desktop.sh
+RUN bash /usr/local/bin/install-desktop.sh
+RUN chsh -s /bin/bash
+
+ENV DISPLAY=:1
+
+# Patch LXQT configuration
+COPY ./scripts/patch-lxqt-config.sh /usr/local/bin/patch-lxqt-config.sh
+COPY ./scripts/lxqt-config /usr/local/bin/lxqt-config
+RUN bash /usr/local/bin/patch-lxqt-config.sh
+
+# Patch noVNC UI
+COPY ./scripts/patch-novnc-ui.sh /usr/local/bin/patch-novnc-ui.sh
+RUN bash /usr/local/bin/patch-novnc-ui.sh
+
 # Set working directory
 WORKDIR /root
 
-CMD ["/bin/bash"]
+CMD ["/usr/local/share/desktop-init.sh"]
