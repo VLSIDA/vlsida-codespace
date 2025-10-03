@@ -14,13 +14,10 @@
     "vscode": {
       "extensions": [
         "ms-vscode.cpptools"
-      ],
-      "settings": {
-        "workbench.startupEditor": "readme"
-      }
+      ]
     }
   },
-  "onCreateCommand": "code /root/chip-tutorials/README.md",
+  "postStartCommand": "echo 'Opening chip-tutorials README...' && sleep 2 && code /root/chip-tutorials/README.md",
   "features": {
     "ghcr.io/devcontainers/features/desktop-lite:1": {
       "password": "bananaslugs!",
