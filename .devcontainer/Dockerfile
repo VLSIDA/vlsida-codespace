@@ -38,6 +38,16 @@ RUN make -j$(nproc)
 RUN make install
 RUN rm -rf /tmp/ngspice
 
+# Install ciel for PDK management
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install ciel
+
+# Enable sky130 PDK
+RUN ciel enable --pdk sky130 0fe599b2afb6708d281543108caf8310912f54af
+
 # Set working directory
 WORKDIR /root
 
