@@ -48,11 +48,18 @@ RUN pip install ciel
 # Enable sky130 PDK
 RUN ciel enable --pdk sky130 0fe599b2afb6708d281543108caf8310912f54af
 
-# Install sky130 KLayout tech files
-RUN git clone https://github.com/VLSIDA/chip-tutorials.git /tmp/chip-tutorials && \
-    mkdir -p /root/.klayout && \
-    cp -r /tmp/chip-tutorials/klayout/tech/sky130 /root/.klayout/ && \
-    rm -rf /tmp/chip-tutorials
+# Clone chip-tutorials to home directory
+WORKDIR /root
+RUN git clone https://github.com/VLSIDA/chip-tutorials.git
+
+# Create symlink for KLayout tech files
+RUN ln -s /root/chip-tutorials/klayout/tech /root/.klayout
+
+# Auto-source OpenROAD environment in bashrc
+RUN echo '# Auto-source OpenROAD environment' >> /root/.bashrc && \
+    echo 'if [ -f /root/OpenROAD-flow-scripts/env.sh ]; then' >> /root/.bashrc && \
+    echo '    source /root/OpenROAD-flow-scripts/env.sh' >> /root/.bashrc && \
+    echo 'fi' >> /root/.bashrc
 
 # Set working directory
 WORKDIR /root
