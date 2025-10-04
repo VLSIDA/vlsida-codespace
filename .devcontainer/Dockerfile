@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y \
 #RUN make install
 #RUN rm -rf /tmp/ngspice
 RUN add-apt-repository ppa:mguthaus/ngspice
-RUN apt-get update apt-get install ngspice -y && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install ngspice -y && rm -rf /var/lib/apt/lists/*
 
 # Install ciel for PDK management
 RUN apt-get update && apt-get install -y \
