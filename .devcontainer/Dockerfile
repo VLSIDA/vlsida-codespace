@@ -12,19 +12,19 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Install ngspice dependencies and compile from source
-RUN apt-get update && apt-get install -y \
-  libxaw7-dev \
-  libx11-dev \
-  libxext-dev \
-  libxmu-dev \
-  libxrender-dev \
-  libcairo2-dev \
-  libpango1.0-dev \
-  libreadline-dev \
-  autoconf \
-  automake \
-  libtool \
-  && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install -y \
+#  libxaw7-dev \
+# libx11-dev \
+#  libxext-dev \
+#  libxmu-dev \
+#  libxrender-dev \
+#  libcairo2-dev \
+#  libpango1.0-dev \
+#  libreadline-dev \
+#  autoconf \
+#  automake \
+#  libtool \
+#  && rm -rf /var/lib/apt/lists/*
 
 # Install ngspice 43 from source
 #ARG NGSPICE_TAG=ngspice-43
@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install -y \
 #RUN make -j$(nproc)
 #RUN make install
 #RUN rm -rf /tmp/ngspice
-RUN add-apt-repository ppa:mguthaus/ngspice
+#RUN add-apt-repository ppa:mguthaus/ngspice
 RUN apt-get update && apt-get install ngspice -y && rm -rf /var/lib/apt/lists/*
 
 # Install ciel for PDK management
